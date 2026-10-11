@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101816" />
+    <meta
+      name="description"
+      content="A little birthday surprise made just for you."
+    />
+    <title>A Tuesday surprise for Sis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,600,20,1;9..144,700,20,1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --night: #101816;
+        --ink: #15201a;
+        --paper: #f5eedc;
+        --lime: #d3ed78;
+        --coral: #f58d70;
+        --muted: #adb6aa;
+        --line: #ffffff30;
+        --sans: "DM Sans", sans-serif;
+        --serif: "Fraunces", Georgia, serif;
+        --mono: "DM Mono", monospace;
+        font-family: var(--sans);
+        background: var(--night);
+        color: #fff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        min-width: 320px;
+      }
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible,
+      textarea:focus-visible {
+        outline: 2px solid var(--lime);
+        outline-offset: 4px;
+      }
+      .hero {
+        position: relative;
+        isolation: isolate;
+        min-height: min(920px, 100svh);
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        background: #253b2c;
+      }
+      .hero-photo,
+      .hero-shade {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .hero-photo {
+        z-index: -2;
+        object-fit: cover;
+        object-position: center 46%;
+        filter: saturate(0.82);
+      }
+      .hero-shade {
+        z-index: -1;
+        background: rgba(8, 17, 13, 0.53);
+      }
+      .hero-inner {
+        width: min(1220px, 100%);
+        margin: auto;
+        padding: 40px clamp(24px, 8vw, 116px) 95px;
+      }
+      .topline {
+        position: absolute;
+        inset: 0 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 26px clamp(20px, 5vw, 72px);
+        font: 10px var(--mono);
+        letter-spacing: 0.11em;
+        color: #ffffffd1;
+      }
+      .wordmark {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font: 600 13px var(--sans);
+        letter-spacing: 0.15em;
+      }
+      .mark {
+        width: 29px;
+        height: 29px;
+        display: grid;
+        place-items: center;
+        border: 1px solid #ffffff8a;
+        border-radius: 50%;
+        color: var(--lime);
+        font: 600 16px var(--serif);
+        letter-spacing: 0;
+      }
+      .edit-button {
+        border: 1px solid #ffffff70;
+        background: #10181633;
+        color: white;
+        border-radius: 999px;
+        padding: 9px 14px;
+        font-size: 10px;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .edit-button:hover {
+        background: #ffffff1c;
+        border-color: #fff;
+      }
+      .eyebrow {
+        font: 10px var(--mono);
+        letter-spacing: 0.16em;
+        color: var(--lime);
+        text-transform: uppercase;
+      }
+      .hero h1 {
+        font: 600 clamp(54px, 9vw, 112px)/0.99 var(--serif);
+        letter-spacing: 0;
+        max-width: 850px;
+        margin: 23px 0 18px;
+        text-wrap: balance;
+      }
+      .hero h1 em {
+        font-weight: 600;
+        color: var(--lime);
+        font-style: italic;
+      }
+      .hero-copy {
+        max-width: 510px;
+        color: #f4f1e9;
+        font-size: 15px;
+        line-height: 1.75;
+        margin: 0;
+      }
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        margin-top: 29px;
+        flex-wrap: wrap;
+      }
+      .primary-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--lime);
+        color: #172117;
+        padding: 14px 20px;
+        font-size: 12px;
+        font-weight: 700;
+        transition:
+          transform 0.2s,
+          background 0.2s;
+      }
+      .primary-button:hover {
+        transform: translateY(-2px);
+        background: #e3f79e;
+      }
+      .primary-button span {
+        font-size: 17px;
+      }
+      .scroll-link {
+        color: #f5f2e8;
+        font-size: 11px;
+        border-bottom: 1px solid #ffffff70;
+        padding: 0 0 5px;
+      }
+      .countdown {
+        position: absolute;
+        right: clamp(20px, 6vw, 86px);
+        bottom: 35px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border-left: 1px solid #ffffff8a;
+        padding-left: 14px;
+      }
+      .countdown-label {
+        font: 9px var(--mono);
+        letter-spacing: 0.12em;
+        color: #ffffffb5;
+        text-transform: uppercase;
+      }
+      .countdown-time {
+        min-width: 148px;
+        color: #fff;
+        font: 12px var(--mono);
+      }
+      .hero-caption {
+        position: absolute;
+        left: clamp(20px, 5vw, 72px);
+        bottom: 35px;
+        color: #ffffffa6;
+        font: 9px var(--mono);
+        letter-spacing: 0.1em;
+      }
+      .ticker {
+        background: var(--lime);
+        color: #172117;
+        overflow: hidden;
+        white-space: nowrap;
+        padding: 12px 0;
+        font: 10px var(--mono);
+        letter-spacing: 0.12em;
+      }
+      .ticker-track {
+        display: flex;
+        width: max-content;
+        gap: 30px;
+        animation: marquee 28s linear infinite;
+      }
+      .ticker span::after {
+        content: "✳";
+        padding-left: 30px;
+        color: #52723d;
+      }
+      .note-section {
+        padding: 100px clamp(22px, 9vw, 132px) 106px;
+        background: var(--night);
+      }
+      .section-head {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 35px;
+        margin-bottom: 36px;
+      }
+      .section-head h2 {
+        font: 600 clamp(36px, 5vw, 62px)/1.04 var(--serif);
+        letter-spacing: 0;
+        margin: 12px 0 0;
+        max-width: 600px;
+      }
+      .section-aside {
+        max-width: 280px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.7;
+        padding-top: 16px;
+      }
+      .letter-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.67fr);
+        gap: clamp(28px, 7vw, 92px);
+        align-items: center;
+        border-top: 1px solid #ffffff30;
+        padding-top: 26px;
+      }
+      .letter-copy {
+        max-width: 670px;
+        color: #e0e5da;
+        font-size: 15px;
+        line-height: 1.85;
+      }
+      .letter-copy p {
+        margin: 0 0 14px;
+      }
+      .letter-copy .signoff {
+        font: italic 21px var(--serif);
+        color: var(--lime);
+        margin-top: 23px;
+      }
+      .letter-aside {
+        border-left: 1px solid #526052;
+        padding: 8px 0 8px 21px;
+      }
+      .letter-aside .number {
+        font: 10px var(--mono);
+        letter-spacing: 0.12em;
+        color: var(--coral);
+      }
+      .letter-aside p {
+        font: 600 25px/1.3 var(--serif);
+        margin: 12px 0 20px;
+        color: var(--paper);
+      }
+      .copy-button {
+        border: 1px solid #6b786b;
+        border-radius: 999px;
+        background: transparent;
+        color: #e3e9df;
+        padding: 10px 14px;
+        font-size: 10px;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      .copy-button:hover {
+        background: #ffffff12;
+        border-color: #d3ed78;
+      }
+      .birthday-section {
+        position: relative;
+        overflow: hidden;
+        background: #e97961;
+        color: #20271c;
+        padding: 81px clamp(22px, 9vw, 132px) 77px;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 30px;
+      }
+      .birthday-section::before,
+      .birthday-section::after {
+        content: "";
+        position: absolute;
+        border: 1px solid #401f1950;
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .birthday-section::before {
+        width: 260px;
+        height: 260px;
+        right: 12%;
+        top: -195px;
+      }
+      .birthday-section::after {
+        width: 120px;
+        height: 120px;
+        right: 23%;
+        top: -105px;
+      }
+      .birthday-copy {
+        position: relative;
+      }
+      .birthday-copy .eyebrow {
+        color: #3a2920;
+      }
+      .birthday-copy h2 {
+        font: 600 clamp(41px, 7vw, 82px)/0.99 var(--serif);
+        margin: 15px 0 10px;
+        letter-spacing: 0;
+      }
+      .birthday-copy p {
+        max-width: 500px;
+        color: #3b3328;
+        font-size: 12px;
+        line-height: 1.65;
+        margin: 0;
+      }
+      .sign-line {
+        position: relative;
+        min-width: 180px;
+        border-bottom: 1px solid #4b332a;
+        padding: 0 3px 9px;
+        color: #402f28;
+        font: italic 19px var(--serif);
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 18px clamp(22px, 5vw, 72px);
+        color: #9aa59b;
+        font: 9px var(--mono);
+        letter-spacing: 0.07em;
+      }
+      .dialog {
+        width: min(440px, calc(100% - 28px));
+        padding: 0;
+        border: 1px solid #55644f;
+        border-radius: 12px;
+        background: #15201a;
+        color: #fff;
+        box-shadow: 0 28px 100px #000a;
+      }
+      .dialog::backdrop {
+        background: #060b09c9;
+        backdrop-filter: blur(4px);
+      }
+      .dialog form {
+        padding: 25px;
+      }
+      .dialog h2 {
+        font: 600 31px var(--serif);
+        margin: 7px 0 5px;
+      }
+      .dialog-intro {
+        font-size: 11px;
+        line-height: 1.6;
+        color: #aeb9ad;
+        margin: 0 0 18px;
+      }
+      .field {
+        display: grid;
+        gap: 6px;
+        margin: 12px 0;
+      }
+      .field label {
+        color: #ccd5c9;
+        font-size: 10px;
+        font-weight: 600;
+      }
+      .field input,
+      .field textarea {
+        width: 100%;
+        border: 1px solid #465448;
+        border-radius: 6px;
+        background: #0f1713;
+        color: #fff;
+        padding: 10px 11px;
+        font-size: 12px;
+        resize: vertical;
+      }
+      .field textarea {
+        min-height: 76px;
+      }
+      .dialog-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 9px;
+        margin-top: 18px;
+      }
+      .quiet-button {
+        border: 1px solid #465448;
+        background: transparent;
+        color: #dae2d8;
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-size: 10px;
+      }
+      .save-button {
+        border: 0;
+        background: var(--lime);
+        color: #172117;
+        border-radius: 999px;
+        padding: 10px 15px;
+        font-size: 10px;
+        font-weight: 700;
+      }
+      .confetti {
+        position: fixed;
+        inset: 0;
+        z-index: 9;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .toast {
+        position: fixed;
+        z-index: 10;
+        left: 50%;
+        bottom: 20px;
+        transform: translate(-50%, 12px);
+        opacity: 0;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: #edf5d1;
+        color: #172117;
+        font-size: 11px;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        pointer-events: none;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+      @keyframes marquee {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      @keyframes arrive {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-inner > * {
+        animation: arrive 0.65s both;
+      }
+      .hero-inner h1 {
+        animation-delay: 0.08s;
+      }
+      .hero-copy {
+        animation-delay: 0.16s;
+      }
+      .hero-actions {
+        animation-delay: 0.24s;
+      }
+      @media (max-width: 720px) {
+        .hero {
+          min-height: 790px;
+          min-height: 100svh;
+          align-items: center;
+        }
+        .hero-photo {
+          object-position: 59% center;
+        }
+        .hero-shade {
+          background: rgba(8, 17, 13, 0.59);
+        }
+        .topline {
+          padding: 17px 16px;
+        }
+        .wordmark {
+          font-size: 11px;
+        }
+        .edit-button {
+          padding: 8px 10px;
+          font-size: 9px;
+        }
+        .hero-inner {
+          padding: 70px 23px 145px;
+        }
+        .hero h1 {
+          font-size: clamp(54px, 15vw, 78px);
+          max-width: 520px;
+          margin: 20px 0 14px;
+        }
+        .hero-copy {
+          font-size: 13px;
+          max-width: 370px;
+        }
+        .hero-actions {
+          gap: 16px;
+          margin-top: 22px;
+        }
+        .primary-button {
+          padding: 12px 16px;
+        }
+        .countdown {
+          left: 23px;
+          right: auto;
+          bottom: 58px;
+          gap: 11px;
+        }
+        .hero-caption {
+          left: 23px;
+          bottom: 23px;
+        }
+        .section-head {
+          display: block;
+          margin-bottom: 25px;
+        }
+        .section-head h2 {
+          font-size: 42px;
+        }
+        .section-aside {
+          padding-top: 13px;
+        }
+        .note-section {
+          padding: 72px 23px;
+        }
+        .letter-layout {
+          grid-template-columns: 1fr;
+          gap: 25px;
+        }
+        .letter-copy {
+          font-size: 13px;
+        }
+        .letter-aside {
+          max-width: 400px;
+        }
+        .birthday-section {
+          display: block;
+          padding: 63px 23px 56px;
+        }
+        .birthday-copy h2 {
+          font-size: 50px;
+        }
+        .sign-line {
+          display: inline-block;
+          margin-top: 34px;
+        }
+        .footer {
+          padding: 16px 22px;
+          flex-direction: column;
+          gap: 7px;
+        }
+        .ticker {
+          padding: 10px 0;
+        }
+        .ticker-track {
+          font-size: 9px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        .ticker-track {
+          animation: none;
+        }
+      }
+      @media print {
+        .topline .edit-button,
+        .hero-actions,
+        .copy-button,
+        .ticker,
+        .confetti,
+        .toast {
+          display: none !important;
+        }
+        .hero {
+          min-height: 85vh;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+        .note-section,
+        .birthday-section {
+          break-inside: avoid;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero" aria-labelledby="birthdayTitle">
+        <img
+          class="hero-photo"
+          src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=2200&q=88"
+          alt="A sunlit field of flowers in bloom"
+          fetchpriority="high"
+        />
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="topline">
+          <a class="wordmark" href="#top" aria-label="A birthday surprise"
+            ><span class="mark">S</span><span>MADE FOR YOU</span></a
+          ><button class="edit-button" id="personalizeButton" type="button">
+            Make it personal ↗
+          </button>
+        </div>
+        <div class="hero-inner" id="top">
+          <div class="eyebrow">TUESDAY · OCTOBER 13, 2026</div>
+          <h1 id="birthdayTitle">
+            Happy birthday,<br /><em id="recipientHeading">Sis.</em>
+          </h1>
+          <p class="hero-copy">
+            A little page for a very big part of my life. I hope your day brings
+            back even a fraction of the joy you give everyone around you.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#your-letter"
+              >Open your letter <span aria-hidden="true">↘</span></a
+            ><a class="scroll-link" href="#birthday-wish"
+              >There's one more thing</a
+            >
+          </div>
+        </div>
+        <div class="hero-caption">A SMALL SURPRISE FROM YOUR SIBLING</div>
+        <div class="countdown" aria-live="polite">
+          <span class="countdown-label" id="countdownLabel">UNTIL YOUR DAY</span
+          ><span class="countdown-time" id="countdownTime">Counting down</span>
+        </div>
+      </section>
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <span>YOUR DAY, YOUR WAY</span><span>MORE LAUGHTER THIS YEAR</span
+          ><span>ALL THE GOOD THINGS FIND YOU</span
+          ><span>YOUR DAY, YOUR WAY</span><span>MORE LAUGHTER THIS YEAR</span
+          ><span>ALL THE GOOD THINGS FIND YOU</span>
+        </div>
+      </div>
+      <section class="note-section" id="your-letter">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">A NOTE FOR YOU</div>
+            <h2>Some people just make life better.</h2>
+          </div>
+          <p class="section-aside">
+            You have always been one of those people for me. Today is a good
+            excuse to say it out loud.
+          </p>
+        </div>
+        <div class="letter-layout">
+          <div class="letter-copy" id="letterCopy">
+            <p>Dear <span data-recipient>Sis</span>,</p>
+            <p>
+              Happy birthday to my sister, my built-in best friend, and one of
+              the people I am most grateful to have in my corner. Thank you for
+              being exactly who you are: thoughtful, funny, and unmistakably
+              you.
+            </p>
+            <p>
+              I hope this next trip around the sun brings you new places to see,
+              people who show up for you the way you show up for them, and
+              plenty of ordinary Tuesdays that turn out unexpectedly lovely.
+            </p>
+            <p>Today, let everyone celebrate you. You deserve all of it.</p>
+            <p class="signoff">
+              Love you always,<br /><span id="senderSignoff">Your sibling</span>
+            </p>
+          </div>
+          <aside class="letter-aside">
+            <span class="number">01 / KEEP THIS ONE</span>
+            <p>
+              For every time you forget how loved you are: come back and read
+              this again.
+            </p>
+            <button class="copy-button" type="button" id="copyNote">
+              Copy this note
+            </button>
+          </aside>
+        </div>
+      </section>
+      <section class="birthday-section" id="birthday-wish">
+        <div class="birthday-copy">
+          <div class="eyebrow">AND ONE MORE THING</div>
+          <h2>Make a wish.<br />Take your time.</h2>
+          <p>
+            No big speech. Just this: I am glad the world got you, and even
+            gladder I got to be your sibling.
+          </p>
+        </div>
+        <div class="sign-line" id="birthdayFrom">With love, your sibling</div>
+      </section>
+    </main>
+    <footer class="footer">
+      <span>MADE WITH LOVE · TUESDAY, OCTOBER 13</span
+      ><span>A LITTLE BIRTHDAY PAGE, JUST FOR YOU</span>
+    </footer>
+    <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <dialog class="dialog" id="personalizeDialog" aria-labelledby="dialogTitle">
+      <form id="personalizeForm" method="dialog">
+        <div class="eyebrow">MAKE IT YOURS</div>
+        <h2 id="dialogTitle">A few little details</h2>
+        <p class="dialog-intro">
+          Add her name and yours. The changes stay in this browser only.
+        </p>
+        <div class="field">
+          <label for="sisterName">Her name</label
+          ><input
+            id="sisterName"
+            name="sisterName"
+            maxlength="40"
+            placeholder="Sis"
+          />
+        </div>
+        <div class="field">
+          <label for="yourName">Your name or sign-off</label
+          ><input
+            id="yourName"
+            name="yourName"
+            maxlength="50"
+            placeholder="Your sibling"
+          />
+        </div>
+        <div class="field">
+          <label for="personalLine">Add a personal line</label
+          ><textarea
+            id="personalLine"
+            name="personalLine"
+            maxlength="240"
+            placeholder="One thing only the two of you would understand..."
+          ></textarea>
+        </div>
+        <div class="dialog-actions">
+          <button class="quiet-button" id="cancelPersonalize" type="button">
+            Not now</button
+          ><button class="save-button" type="submit">Save details</button>
+        </div>
+      </form>
+    </dialog>
+    <script>
+      (() => {
+        const $ = (selector) => document.querySelector(selector);
+        const storeKey = "tuesday-sister-birthday-v1";
+        const dialog = $("#personalizeDialog");
+        let toastTimer;
+        const defaults = {
+          sisterName: "Sis",
+          yourName: "Your sibling",
+          personalLine: "",
+        };
+        function getDetails() {
+          try {
+            return {
+              ...defaults,
+              ...JSON.parse(localStorage.getItem(storeKey) || "{}"),
+            };
+          } catch {
+            return { ...defaults };
+          }
+        }
+        function applyDetails(details) {
+          const name =
+            (details.sisterName || "Sis").trim().slice(0, 40) || "Sis";
+          const sender =
+            (details.yourName || "Your sibling").trim().slice(0, 50) ||
+            "Your sibling";
+          $("#recipientHeading").textContent = `${name}.`;
+          document
+            .querySelectorAll("[data-recipient]")
+            .forEach((node) => (node.textContent = name));
+          $("#senderSignoff").textContent = sender;
+          $("#birthdayFrom").textContent = `With love, ${sender}`;
+          const extra = details.personalLine.trim().slice(0, 240);
+          const old = $("#personalLineInLetter");
+          if (old) old.remove();
+          if (extra) {
+            const p = document.createElement("p");
+            p.id = "personalLineInLetter";
+            p.textContent = extra;
+            $("#letterCopy").insertBefore(
+              p,
+              $("#letterCopy").querySelector(".signoff"),
+            );
+          }
+          document.title = `A Tuesday surprise for ${name}`;
+        }
+        function showToast(text) {
+          const node = $("#toast");
+          node.textContent = text;
+          node.classList.add("show");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => node.classList.remove("show"), 2300);
+        }
+        function openPersonalize() {
+          const details = getDetails();
+          $("#sisterName").value =
+            details.sisterName === "Sis" ? "" : details.sisterName;
+          $("#yourName").value =
+            details.yourName === "Your sibling" ? "" : details.yourName;
+          $("#personalLine").value = details.personalLine;
+          dialog.showModal();
+          $("#sisterName").focus();
+        }
+        $("#personalizeButton").addEventListener("click", openPersonalize);
+        $("#cancelPersonalize").addEventListener("click", () => dialog.close());
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) dialog.close();
+        });
+        $("#personalizeForm").addEventListener("submit", (event) => {
+          event.preventDefault();
+          const details = Object.fromEntries(new FormData(event.currentTarget));
+          localStorage.setItem(storeKey, JSON.stringify(details));
+          applyDetails(details);
+          dialog.close();
+          showToast("Saved just for this browser.");
+        });
+        function updateCountdown() {
+          const target = new Date(2026, 9, 13, 0, 0, 0, 0).getTime();
+          const diff = target - Date.now();
+          if (diff <= 0) {
+            $("#countdownLabel").textContent = "IT IS YOUR DAY";
+            $("#countdownTime").textContent = "Go be celebrated.";
+            return;
+          }
+          const days = Math.floor(diff / 86400000),
+            hours = Math.floor((diff % 86400000) / 3600000),
+            minutes = Math.floor((diff % 3600000) / 60000);
+          $("#countdownTime").textContent =
+            `${days}d  ${String(hours).padStart(2, "0")}h  ${String(minutes).padStart(2, "0")}m`;
+        }
+        $("#copyNote").addEventListener("click", async () => {
+          const text = $("#letterCopy").innerText;
+          try {
+            await navigator.clipboard.writeText(text);
+            showToast("The birthday note is copied.");
+          } catch {
+            const field = document.createElement("textarea");
+            field.value = text;
+            field.style.position = "fixed";
+            field.style.opacity = "0";
+            document.body.append(field);
+            field.select();
+            document.execCommand("copy");
+            field.remove();
+            showToast("The birthday note is copied.");
+          }
+        });
+        function celebrate() {
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+            return;
+          const canvas = $("#confetti"),
+            ctx = canvas.getContext("2d"),
+            scale = window.devicePixelRatio || 1;
+          canvas.width = innerWidth * scale;
+          canvas.height = innerHeight * scale;
+          ctx.scale(scale, scale);
+          const colors = [
+            "#d3ed78",
+            "#f58d70",
+            "#f5eedc",
+            "#83c9bd",
+            "#eacb62",
+          ];
+          const bits = Array.from({ length: 115 }, () => ({
+            x: innerWidth * 0.48 + (Math.random() - 0.5) * 120,
+            y: innerHeight * 0.42 - 30 - Math.random() * 90,
+            vx: (Math.random() - 0.5) * 7,
+            vy: -2 - Math.random() * 7,
+            size: 3 + Math.random() * 5,
+            spin: Math.random() * 6,
+            turn: (Math.random() - 0.5) * 0.18,
+            color: colors[Math.floor(Math.random() * colors.length)],
+          }));
+          let frames = 0;
+          function draw() {
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            for (const bit of bits) {
+              bit.x += bit.vx;
+              bit.y += bit.vy;
+              bit.vy += 0.13;
+              bit.spin += bit.turn;
+              ctx.save();
+              ctx.translate(bit.x, bit.y);
+              ctx.rotate(bit.spin);
+              ctx.fillStyle = bit.color;
+              ctx.fillRect(
+                -bit.size / 2,
+                -bit.size / 2,
+                bit.size,
+                bit.size * 1.7,
+              );
+              ctx.restore();
+            }
+            if (++frames < 100) requestAnimationFrame(draw);
+            else ctx.clearRect(0, 0, innerWidth, innerHeight);
+          }
+          draw();
+        }
+        const details = getDetails();
+        applyDetails(details);
+        updateCountdown();
+        setInterval(updateCountdown, 30000);
+        $("#copyNote").addEventListener("dblclick", celebrate);
+        document
+          .querySelector(".primary-button")
+          .addEventListener("click", celebrate);
+      })();
+    </script>
+  </body>
+</html>
